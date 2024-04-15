@@ -8,13 +8,16 @@ import cors from "cors";
 const DB_PASS = getConfig("DB_PASS");
 const APP_PORT = getConfig("APP_PORT");
 import authRouter from "./routers/auth.router.js";
+import userRouter from "./routers/user.router.js";
 
 const app = express();
 app.use(cors());
 app.use(errorHandler);
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
+
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 app.use((err, req, res, next) => {
   if (err) {
